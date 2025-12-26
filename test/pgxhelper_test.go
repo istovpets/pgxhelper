@@ -7,13 +7,13 @@ import (
 	"testing"
 	"time"
 
+	"github.com/istovpets/pgxhelper"
+	"github.com/istovpets/pgxhelper/sqlsetpgxhelper"
+	"github.com/istovpets/sqlset"
 	"github.com/stretchr/testify/suite"
 	"github.com/testcontainers/testcontainers-go"
 	"github.com/testcontainers/testcontainers-go/modules/postgres"
 	"github.com/testcontainers/testcontainers-go/wait"
-	"github.com/theprogrammer67/pgxhelper"
-	"github.com/theprogrammer67/pgxhelper/sqlsetpgxhelper"
-	"github.com/theprogrammer67/sqlset"
 )
 
 var (

@@ -4,7 +4,7 @@ go 1.25.3
 
 require (
 	github.com/georgysavva/scany/v2 v2.1.4
-	github.com/istovpets/sqlset v0.2.2
+	github.com/istovpets/sqlset v0.2.5
 	github.com/jackc/pgx/v5 v5.7.6
 	github.com/stretchr/testify v1.11.1
 	github.com/testcontainers/testcontainers-go v0.40.0

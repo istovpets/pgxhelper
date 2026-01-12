@@ -156,12 +156,12 @@ func (s *DBHelperSuite) TestDBHelperWithSQLSet() {
 	ctx, cancel := context.WithTimeout(context.Background(), testTimeout)
 	defer cancel()
 
-	_, err = db.Exec(ctx, "test", "CreateTableCustomers")
+	_, err = db.Exec(ctx, "test.CreateTableCustomers")
 	s.Require().NoError(err, "failed to create table customers")
 
 	s.Run("should insert customers in transaction", func() {
 		err = db.WithinTransaction(ctx, func(txCtx context.Context) error {
-			r, err := db.Exec(txCtx, "test", "InsertCustomer", "111", "Alice", "alice@example.com")
+			r, err := db.Exec(txCtx, "test.InsertCustomer", "111", "Alice", "alice@example.com")
 			if err != nil {
 				return err
 			}
@@ -169,7 +169,7 @@ func (s *DBHelperSuite) TestDBHelperWithSQLSet() {
 				return errors.New("expected 1 row affected")
 			}
 
-			r, err = db.Exec(txCtx, "test", "InsertCustomer", "222", "Bob", "bob@example.com")
+			r, err = db.Exec(txCtx, "test.InsertCustomer", "222", "Bob", "bob@example.com")
 			if err != nil {
 				return err
 			}
@@ -184,24 +184,24 @@ func (s *DBHelperSuite) TestDBHelperWithSQLSet() {
 
 		var customers []Customer
 
-		err = db.Select(ctx, &customers, "test", "GetCustomers", []string{"111", "222"})
+		err = db.Select(ctx, &customers, "test.GetCustomers", []string{"111", "222"})
 		s.Require().NoError(err)
 		s.Equal(2, len(customers))
 	})
 
 	s.Run("should insert customer", func() {
-		r, err := db.Exec(ctx, "test", "InsertCustomer", "333", "John", "john@example.com")
+		r, err := db.Exec(ctx, "test.InsertCustomer", "333", "John", "john@example.com")
 		s.Require().NoError(err)
 		s.Equal(int64(1), r, "expected 1 row affected")
 
 		var customer Customer
-		err = db.Get(ctx, &customer, "test", "GetCustomer", "333")
+		err = db.Get(ctx, &customer, "test.GetCustomer", "333")
 		s.Require().NoError(err)
 		s.Equal("John", customer.Name)
 	})
 
 	s.Run("should failed find query", func() {
-		r, err := db.Exec(ctx, "test", "Unknown")
+		r, err := db.Exec(ctx, "test.Unknown")
 		s.ErrorIs(err, sqlset.ErrQueryNotFound)
 		s.Equal(int64(0), r, "expected 0 row affected")
 	})

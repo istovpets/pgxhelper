@@ -79,6 +79,10 @@ func (d *DBHelper) Ping(ctx context.Context) error {
 
 // Close closes all connections in the pool and prevents further use.
 func (d *DBHelper) Close() {
+	if d.pool == nil {
+		return
+	}
+
 	d.pool.Close()
 }
 

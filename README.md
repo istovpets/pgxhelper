@@ -1,5 +1,9 @@
 # pgxhelper
 
+[![Go Reference](https://pkg.go.dev/badge/github.com/istovpets/pgxhelper.svg)](https://pkg.go.dev/github.com/istovpets/pgxhelper)
+[![Portfolio](https://img.shields.io/badge/author-portfolio-blue)](https://programmer.stovpets.com/)
+
+
 `pgxhelper` is a lightweight, opinionated wrapper around [pgx/v5](https://github.com/jackc/pgx) and [scany/v2](https://github.com/georgysavva/scany) designed to simplify common database operations in Go applications. It provides a thin abstraction layer over `pgxpool` that reduces boilerplate for querying, scanning, and executing commands, including a straightforward way to handle transactions.
 
 ## Features

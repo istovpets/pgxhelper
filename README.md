@@ -13,7 +13,7 @@
 ## Installation
 
 ```sh
-go get github.com/theprogrammer67/pgxhelper
+go get github.com/istovpets/pgxhelper
 ```
 
 ## Quick Start
@@ -47,7 +47,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/theprogrammer67/pgxhelper"
+	"github.com/istovpets/pgxhelper"
 )
 
 func main() {
@@ -136,6 +136,6 @@ The main struct that holds the database connection pool.
 
 ## `sqlsetpgxhelper`
 
-The `sqlsetpgxhelper` package provides a `DBHelper`, which is an alternative to the main `pgxhelper.DBHelper`. It is designed to work with the [sqlset](https://github.com/nofeaturesonlybugs/sqlset) library, allowing you to manage your SQL queries in separate files instead of embedding them as strings in your Go code.
+The `sqlsetpgxhelper` package provides a `DBHelper`, which is an alternative to the main `pgxhelper.DBHelper`. It is designed to work with the [sqlset](https://github.com/istovpets/sqlset) library, allowing you to manage your SQL queries in separate files instead of embedding them as strings in your Go code.
 
 This is particularly useful for larger projects where separating SQL from application logic improves maintainability.

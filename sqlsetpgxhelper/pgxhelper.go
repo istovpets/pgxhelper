@@ -1,12 +1,12 @@
 // Package sqlset provides a pgxhelper wrapper that works with
-// github.com/theprogrammer67/sqlset.
+// github.com/istovpets/sqlset.
 package sqlsetpgxhelper
 
 import (
 	"context"
 
-	"github.com/theprogrammer67/pgxhelper"
-	"github.com/theprogrammer67/sqlset"
+	"github.com/istovpets/pgxhelper"
+	"github.com/istovpets/sqlset"
 )
 
 // DBHelper is a wrapper around pgxhelper.DBHelper that uses a sqlset.SQLSet

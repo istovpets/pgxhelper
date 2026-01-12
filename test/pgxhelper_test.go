@@ -189,13 +189,17 @@ func (s *DBHelperSuite) TestDBHelperWithSQLSet() {
 		s.Equal(2, len(customers))
 	})
 
-	s.Run("should insert customer", func() {
+	s.Run("should insert and get customer", func() {
 		r, err := db.Exec(ctx, "test.InsertCustomer", "333", "John", "john@example.com")
 		s.Require().NoError(err)
 		s.Equal(int64(1), r, "expected 1 row affected")
 
 		var customer Customer
 		err = db.Get(ctx, &customer, "test.GetCustomer", "333")
+		s.Require().NoError(err)
+		s.Equal("John", customer.Name)
+
+		err = db.Get(ctx, &customer, "SELECT * FROM customers WHERE id = $1;", "333")
 		s.Require().NoError(err)
 		s.Equal("John", customer.Name)
 	})

@@ -281,3 +281,39 @@ Now you can replace the string literals in your code with the generated constant
 	// ...
 ```
 
+### Use Raw SQL Queries
+
+In addition to query identifiers (`queryID` or `setID.queryID`), you can pass raw SQL directly to `Get`, `Select`, and `Exec`.
+
+If the provided value looks like SQL text, it will be executed as-is, without resolving it via `sqlset`.
+
+```go
+// ...
+
+// Execute raw SQL directly
+_, err = db.Exec(
+    ctx,
+    `CREATE TABLE users (
+        id    SERIAL PRIMARY KEY,
+        email TEXT NOT NULL UNIQUE
+    )`,
+)
+
+// ...
+
+// Use raw SQL in Get
+err = db.Get(
+    ctx,
+    &user,
+    `SELECT id, email FROM users WHERE email = $1`,
+    "jane.doe@example.com",
+)
+
+// ...
+```
+This can be useful for:
+* quick experiments or migrations,
+* dynamically constructed queries,
+* cases where using a predefined query identifier is unnecessary.
+
+Both approaches — query identifiers and raw SQL — can be freely mixed within the same codebase.

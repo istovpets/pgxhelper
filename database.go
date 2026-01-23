@@ -97,6 +97,12 @@ func (d *DBHelper) Querier(ctx context.Context) Querier {
 	return d.pool
 }
 
+// Pool returns the underlying *pgxpool.Pool instance.
+// This is useful for direct database access when the helper functions are insufficient.
+func (d *DBHelper) Pool() *pgxpool.Pool {
+	return d.pool
+}
+
 // WithinTransaction runs the given function within a transactional context.
 func (d *DBHelper) WithinTransaction(ctx context.Context, fn func(ctx context.Context) error, opt ...pgx.TxOptions) error {
 	d.requireNoTransaction(ctx)
